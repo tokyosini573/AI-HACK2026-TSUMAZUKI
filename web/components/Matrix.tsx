@@ -77,7 +77,7 @@ export function Matrix({ matrix, cards }: { matrix: M; cards: ProfileCard[] }) {
                           return c.replayable ? (
                             <Link
                               key={c.run_id}
-                              href={`/replay?run=${encodeURIComponent(c.run_id)}`}
+                              href={`/replay/${encodeURIComponent(c.run_id)}`}
                               className={`block rounded-lg border px-2.5 py-1.5 transition hover:brightness-95 ${tone}`}
                             >
                               {inner}

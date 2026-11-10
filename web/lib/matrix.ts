@@ -83,7 +83,14 @@ export type Matrix = {
 export function loadMatrix(): Matrix | null {
   const p = join(DEMO, "matrix.json");
   if (!existsSync(p)) return null;
-  return JSON.parse(readFileSync(p, "utf8")) as Matrix;
+  const m = JSON.parse(readFileSync(p, "utf8")) as Matrix;
+  // replayable は「座標が記録されている」の意味で、スクリーンショットを同梱した実行
+  // （replays.json）より広い。同梱していない実行にリンクすると、公開版（静的）では 404、
+  // 以前は先頭のリプレイに黙って差し替わっていた。押せるのは実際に再生できる実行だけにする。
+  const rp = join(DEMO, "replays.json");
+  const shipped = new Set<string>(existsSync(rp) ? JSON.parse(readFileSync(rp, "utf8")) : []);
+  for (const s of m.sites) for (const c of s.cells) c.replayable = c.replayable && shipped.has(c.run_id);
+  return m;
 }
 
 /**

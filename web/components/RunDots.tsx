@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Matrix } from "@/lib/matrix";
 import type { ProfileCard } from "@/lib/profiles";
+import { asset } from "@/lib/site";
 
 /**
  * **1つの点が、1回の実行。** プロファイルごとに横1列に並べる。
@@ -68,7 +69,7 @@ export function RunDots({ matrix, cards }: { matrix: Matrix; cards: ProfileCard[
             <div className="flex items-start gap-3 sm:gap-4">
               {r.photo ? (
                 <Image
-                  src={r.photo}
+                  src={asset(r.photo)}
                   alt=""
                   width={112}
                   height={112}

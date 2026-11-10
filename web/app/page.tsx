@@ -5,6 +5,7 @@ import { loadProfileCards } from "@/lib/profiles";
 import { Personas } from "@/components/Personas";
 import { RequestForm } from "@/components/RequestForm";
 import { ArtReduce, ArtCompare, ArtRewrite } from "@/components/StepArt";
+import { asset, STATIC_DEMO } from "@/lib/site";
 
 /**
  * ランディング。
@@ -64,7 +65,7 @@ export default function Home() {
           {/* 목업의 「분석 진척 68%」 자리. 이건 제품 이미지이지 계측값이 아니다 —
               그래서 여기에 숫자를 붙이지 않는다. 실측은 전부 /report에 있다 */}
           <Image
-            src="/img/hero-visual.png"
+            src={asset("/img/hero-visual.png")}
             alt=""
             width={1288}
             height={860}
@@ -171,7 +172,9 @@ export default function Home() {
               試してみませんか？
             </h2>
             <p className="mt-3 text-sm text-white/75">
-              URLを入力するだけで、依頼できます。
+              {STATIC_DEMO
+                ? "手元でリポジトリを動かせば、URLを入れるだけで試せます。"
+                : "URLを入力するだけで、依頼できます。"}
             </p>
 
             {/* 실제로 돌린 5곳. 「今はこの5サイトを公開中」을 링크로 보여준다 */}

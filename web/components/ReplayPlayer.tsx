@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import type { Replay } from "@/lib/replay";
+import { asset } from "@/lib/site";
 
 /**
  * website design/play_screen.png の再生画面。
@@ -62,7 +63,7 @@ export function ReplayPlayer({ replay }: { replay: Replay }) {
             {cur?.shot ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={`/demo/shots/${cur.shot}`}
+                src={asset(`/demo/shots/${cur.shot}`)}
                 alt={`${cur.n}手目の画面`}
                 className="block w-full"
               />

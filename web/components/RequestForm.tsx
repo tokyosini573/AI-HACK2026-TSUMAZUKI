@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { REPO_URL, STATIC_DEMO } from "@/lib/site";
 
 /**
  * 랜딩의 URL 입력창.
@@ -16,6 +18,44 @@ import { useState } from "react";
  */
 
 export function RequestForm() {
+  if (STATIC_DEMO) return <StaticNotice />;
+  return <LiveRequestForm />;
+}
+
+/**
+ * 公開版（GitHub Pages）用。即時実行はブラウザ起動と LLM 呼び出しが要るので出さない。
+ * 押せるのに動かない入力欄は置かない — 何が見られて、何が手元でできるかを先に書く。
+ */
+function StaticNotice() {
+  return (
+    <div className="rounded-2xl bg-white p-6 shadow-2xl">
+      <p className="text-sm font-bold">この公開版について</p>
+      <p className="mt-3 text-sm leading-relaxed text-fg-muted">
+        ここに出ている数値・スクリーンショット・AIの発言は、すべて実際に回した実行記録です。
+        任意のURLをその場で試す「即時実行」は、ブラウザの起動とモデル呼び出しが必要なため、
+        公開版では止めています。リポジトリを手元で動かすと使えます。
+      </p>
+      <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+        <Link
+          href="/replay"
+          className="rounded-lg bg-brand px-5 py-2.5 text-center text-sm font-bold text-white transition hover:opacity-90"
+        >
+          リプレイを見る
+        </Link>
+        <a
+          href={REPO_URL}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="rounded-lg border border-line px-5 py-2.5 text-center text-sm font-bold transition hover:border-brand hover:text-brand"
+        >
+          GitHub で動かし方を見る
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function LiveRequestForm() {
   const router = useRouter();
   const [url, setUrl] = useState("");
 

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { RunView, StepView } from "@/lib/data";
 import { Badge, MaskedText } from "./ui";
+import { asset } from "@/lib/site";
 
 const TICK_MS = 2200;
 
@@ -137,7 +138,7 @@ function Lane({
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink">
         {step.shot ? (
           <Image
-            src={step.shot}
+            src={asset(step.shot)}
             alt={`${run.profileId} ステップ ${step.n}`}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

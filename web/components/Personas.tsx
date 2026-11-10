@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ProfileCard } from "@/lib/profiles";
+import { asset } from "@/lib/site";
 
 /**
  * 랜딩의 인물 줄 — **사진과 이름만.** 목업(`website design/landingpage.png`) 그대로다.
@@ -31,7 +32,7 @@ export function Personas({ cards }: { cards: ProfileCard[] }) {
       {people.map((c) => (
         <article key={c.id} className="card p-4">
           <Image
-            src={c.photo as string}
+            src={asset(c.photo as string)}
             alt=""
             width={560}
             height={468}
