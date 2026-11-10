@@ -16,6 +16,16 @@ npm run build
 
 Node 25 / Next.js 16 / React 19 / Tailwind CSS v4。
 
+### 公開版（GitHub Pages）
+
+`main` に push すると `.github/workflows/pages.yml` が静的に書き出して公開します。
+公開版は記録済みの実行結果だけを出し、即時実行（`*.live.tsx` / `*.live.ts`）は外します。
+ブラウザ起動と LLM 呼び出しが要り、押されるたびに原価が出るためです。手元で同じものを確かめるには:
+
+```bash
+TZ_STATIC=1 NEXT_PUBLIC_STATIC_DEMO=1 NEXT_PUBLIC_BASE_PATH=/AI-HACK2026-TSUMAZUKI npx next build   # → out/
+```
+
 ## データ
 
 画面の数値・スクリーンショット・AIの発言は、すべて `public/demo/` に置いた

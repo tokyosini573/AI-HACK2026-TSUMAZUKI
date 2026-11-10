@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { REPO_URL, STATIC_DEMO } from "@/lib/site";
 
 /**
  * 모든 화면의 머리와 발.
@@ -35,11 +36,12 @@ export function Header({ back }: { back?: { href: string; label: string } }) {
           )}
           {/* ★ 심사위원은 자기가 아는 URL을 넣어보고 싶어 한다. 그 문이 어느 화면에서도
               한 번에 보여야 한다. 안 보이면 「미리 준비한 것만 되는 도구」로 읽힌다 */}
+          {/* 公開版（静的）には即時実行がないので、記録済みの実行を見せる入口に替える */}
           <Link
-            href="/request"
+            href={STATIC_DEMO ? "/replay" : "/request"}
             className="rounded-full bg-brand px-4 py-1.5 text-sm font-bold text-white transition hover:opacity-90"
           >
-            試してみる
+            {STATIC_DEMO ? "リプレイを見る" : "試してみる"}
           </Link>
         </div>
       </div>
@@ -73,7 +75,7 @@ export function Footer() {
             <Link href="/replay" className="hover:text-fg">リプレイ</Link>
             <Link href="/report/detail#honesty" className="hover:text-fg">この数値の限界</Link>
             <a
-              href="https://github.com/pys573/AI_HACK2026"
+              href={REPO_URL}
               className="hover:text-fg"
               target="_blank"
               rel="noreferrer noopener"

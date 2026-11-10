@@ -116,7 +116,7 @@ export default function Report() {
                   .map((s) => s.site_name),
               ),
             ].join("・")}
-            で、内訳は<a className="underline" href="/report/detail">詳細ページ</a>に全部出しています。
+            で、内訳は<Link className="underline" href="/report/detail">詳細ページ</Link>に全部出しています。
           </p>
         )}
 
